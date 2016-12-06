@@ -46,7 +46,7 @@ public class Framebuffer {
     public var timingStyle:FramebufferTimingStyle = .stillImage
     public var orientation:ImageOrientation
 
-    let texture:GLuint
+    public let texture:GLuint
     let framebuffer:GLuint?
     let stencilBuffer:GLuint?
     let size:GLSize
@@ -108,7 +108,7 @@ public class Framebuffer {
         }
     }
     
-    func sizeForTargetOrientation(_ targetOrientation:ImageOrientation) -> GLSize {
+    public func sizeForTargetOrientation(_ targetOrientation:ImageOrientation) -> GLSize {
         if self.orientation.rotationNeededForOrientation(targetOrientation).flipsDimensions() {
             return GLSize(width:size.height, height:size.width)
         } else {
@@ -159,7 +159,7 @@ public class Framebuffer {
 
     weak var cache:FramebufferCache?
     var framebufferRetainCount = 0
-    func lock() {
+    public func lock() {
         framebufferRetainCount += 1
     }
 
