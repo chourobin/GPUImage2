@@ -8,6 +8,11 @@ public protocol AudioEncodingTarget {
 public class MovieOutput: ImageConsumer, AudioEncodingTarget {
     public let sources = SourceContainer()
     public let maximumInputs:UInt = 1
+    public var transform: CGAffineTransform = CGAffineTransform.identity {
+        didSet {
+            assetWriterVideoInput.transform = transform
+        }
+    }
     
     let assetWriter:AVAssetWriter
     let assetWriterVideoInput:AVAssetWriterInput
